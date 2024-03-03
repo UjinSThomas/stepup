@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Recommendations</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Course Recommendations</h1>
+    <p>Based on your selected information, here are some courses you might be interested in:</p>
+
+    <ul id="course-recommendations">
+      </ul>
+    <h4>Engineering - 59%</h4>
+    <h4>Medical - 23%</h4>
+    <h4>Commerce - 18%</h4>
+    <button onclick="redirectToPage()" type="button">Go Back</button>
+    <script>
+        function redirectToPage() {
+            window.location.href = "skills.html";
+        }
+    </script>  
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+    // Get selected courses, marks, skills, and interests from previous pages (replace with actual retrieval logic)
+    const selectedCourses = []; // Array of selected course groups (e.g., ["science"])
+    const selectedMarks = {}; // Object containing marks for each subject (e.g., { "Physics": 80, "Chemistry": 90 })
+    const selectedSkills = []; // Array of selected skills (e.g., ["Coding", "Writing"])
+    const selectedInterests = []; // Array of selected interests (e.g., ["Science", "Technology"])
+
+    function recommendCourses() {
+      const recommendations = [];
+
+      // Filter courses based on selected course groups
+      const allCourses = {
+        science: ['Computer Science', 'Data Science', 'Engineering', 'Mathematics', 'Physics', 'Chemistry', 'Biology'],
+        commerce: ['Accounting', 'Finance', 'Business Administration', 'Economics', 'Marketing'],
+        arts: ['English Literature', 'History', 'Philosophy', 'Psychology', 'Visual Arts', 'Performing Arts'],
+      };
+
+      selectedCourses.forEach(courseGroup => {
+        recommendations.push(...allCourses[courseGroup]);
+      });
+
+      // Filter courses based on marks (replace with logic to filter based on minimum marks requirements)
+      recommendations.forEach(course => {
+        // Example logic: filter out courses with required subjects where marks are below a certain threshold
+        if (selectedMarks[course] && selectedMarks[course] < 70) {
+          const index = recommendations.indexOf(course);
+          recommendations.splice(index, 1);
+        }
+      });
+
+      // Filter courses based on skills and interests (replace with logic to match skills and interests to course requirements or descriptions)
+      recommendations.forEach(course => {
+        // Example logic: filter out courses that don't mention any of the selected skills or interests in their descriptions
+        const courseDescription = "Replace with logic to get course description"; // Replace with actual logic to retrieve course descriptions
+        let relevant = false;
+        selectedSkills.forEach(skill => {
+          if (courseDescription.toLowerCase().includes(skill.toLowerCase())) {
+            relevant = true;
+          }
+        });
+        selectedInterests.forEach(interest => {
+          if (courseDescription.toLowerCase().includes(interest.toLowerCase())) {
+            relevant = true;
+          }
+        });
+        if (!relevant) {
+          const index = recommendations.indexOf(course);
+          recommendations.splice(index, 1);
+        }
+      });
+
+      // Display recommended courses
+      const courseList = document.getElementById('course-recommendations');
+      courseList.innerHTML = '';
+      recommendations.forEach(course => {
+        const listItem = document.createElement('li');
+        listItem.textContent = course;
+        courseList.appendChild(listItem);
+      });
+    }
+
+    recommendCourses();
+  </script>
+</body>
+</html>
