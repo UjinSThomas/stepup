@@ -1,0 +1,73 @@
+<!-- skills-interests.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills and Interests</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Skills and Interests</h1>
+        <form id="skills-interests-form">
+            <div>
+                <h2>Step 1: Select Skills</h2>
+                <div id="skills-list"></div>
+            </div>
+            
+            <hr>
+            <div>
+                <h2>Step 2: Select Interests</h2>
+                <div id="interests-list"></div>
+            </div>
+            <button onclick="redirectToPage()" type="button">Submit</button>
+            <script>
+                function redirectToPage() {
+                    window.location.href = "last.html";
+                }
+            </script>  
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        const skills = ['Coding', 'Writing', 'Blogging', 'Designing', 'Photography', 'Drawing', 'Painting', 'Singing', 'Dancing', 'Cooking', 'Gardening', 'Yoga', 'Meditation', 'Gaming', 'Reading', 'Traveling', 'Sports', 'Music', 'Crafting', 'Programming', 'Marketing', 'Entrepreneurship', 'Leadership', 'Public Speaking', 'Event Planning', 'Networking', 'Research', 'Data Analysis', 'Financial Analysis', 'Project Management', 'Time Management', 'Problem Solving', 'Decision Making', 'Creativity', 'Teamwork', 'Adaptability', 'Critical Thinking', 'Communication', 'Negotiation', 'Stress Management', 'Empathy', 'Emotional Intelligence', 'Conflict Resolution', 'Customer Service', 'Sales', 'Human Resources', 'Business Development'];
+
+        const interests = ['Art', 'Science', 'Technology', 'Engineering', 'Mathematics', 'History', 'Literature', 'Philosophy', 'Psychology', 'Sociology', 'Anthropology', 'Economics', 'Politics', 'Environmental Studies', 'Geography', 'Languages', 'Cultural Studies', 'Music', 'Film', 'Theater', 'Dance', 'Photography', 'Sports', 'Fitness', 'Yoga', 'Meditation', 'Cooking', 'Baking', 'Travel', 'Adventure', 'Fashion', 'Design', 'Gaming', 'Reading', 'Writing', 'Blogging', 'Volunteering', 'Community Service', 'Animal Welfare', 'Nature', 'Outdoor Activities', 'DIY', 'Crafts', 'Cars', 'Technology', 'Gadgets', 'Space Exploration', 'History', 'Mythology', 'Religion'];
+
+        function populateCheckboxList(containerId, items) {
+            const container = document.getElementById(containerId);
+            items.forEach(item => {
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.name = 'selectedItems';
+                checkbox.value = item;
+                const label = document.createElement('label');
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(item));
+                container.appendChild(label);
+                container.appendChild(document.createElement('br'));
+            });
+        }
+
+        populateCheckboxList('skills-list', skills);
+        populateCheckboxList('interests-list', interests);
+
+        $('#submit-skills').click(function() {
+            const selectedSkills = $('input[name="selectedItems"]:checked').map(function() {
+                return this.value;
+            }).get();
+            console.log('Selected Skills:', selectedSkills);
+            // Add your code to handle selected skills
+        });
+
+        $('#submit-interests').click(function() {
+            const selectedInterests = $('input[name="selectedItems"]:checked').map(function() {
+                return this.value;
+            }).get();
+            console.log('Selected Interests:', selectedInterests);
+            // Add your code to handle selected interests
+        });
+    </script>
+</body>
+</html>

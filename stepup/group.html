@@ -1,0 +1,82 @@
+<!-- course-selection.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Selection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Course Selection</h1>
+        <form id="course-selection-form">
+            <div id="step1">
+                <h2>Select Group of Courses</h2>
+                <label for="course-group">Course Group:</label>
+                <select id="course-group" name="course-group">
+                    <option value="science">Science</option>
+                    <option value="commerce">Commerce</option>
+                    <option value="arts">Arts</option>
+                </select>
+                <button onclick="nextStep(2)" type="button">Next</button>
+            </div>
+            <div id="step2" style="display: none;">
+                <h2>Select Subjects and Enter Marks</h2>
+                <table id="subjects-table" class="table">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Marks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Subjects and marks will be dynamically added here -->
+                    </tbody>
+                </table>
+                <button onclick="redirectToPage()" type="button">Next</button>
+                <script>
+                    function redirectToPage() {
+                        window.location.href = "skills.html";
+                    }
+                </script> 
+            </div>
+            
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        const courses = {
+            science: ['Physics', 'Chemistry', 'Biology','Mathematics'],
+            commerce: ['Accounting', 'Finance', 'Economics','Mathematics'],
+            arts: ['History', 'Literature', 'Philosophy']
+        };
+
+        function populateTable() {
+            const selectedGroup = document.getElementById('course-group').value;
+            const subjects = courses[selectedGroup];
+            const tableBody = document.querySelector('#subjects-table tbody');
+            tableBody.innerHTML = '';
+            subjects.forEach(subject => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${subject}</td>
+                    <td><input type="number" name="${subject}" class="form-control"></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function nextStep(step) {
+            if (step === 2) {
+                populateTable();
+            }
+            document.getElementById(`step${step}`).style.display = 'block';
+        }
+
+        document.getElementById('course-group').addEventListener('change', function() {
+            populateTable();
+        });
+    </script>
+</body>
+</html>

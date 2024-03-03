@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stepup Login</title>
+  <style>
+    /* Styles for overall layout */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('i.jpeg');
+      background-size: cover; /* Adjust the image size to cover the entire background */
+      background-position: center center; /* Position the image at the center */
+      background-repeat: no-repeat; /* Do not repeat the image */
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    /* Styles for form and buttons */
+    form {
+      display: flex; /* Use flexbox for alignment */
+      flex-direction: column; /* Stack elements vertically */
+      justify-content: space-between; /* Distribute elements evenly */
+      margin-bottom: 10px; /* Add margin below the form */
+    }
+
+    input[type="text"],
+    input[type="password"],
+    button,
+    a {
+      width: 100%; /* Full width for all elements */
+      padding: 10px;
+      margin: 5px 0; /* Margin for spacing */
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      text-align: center; /* Center text within elements */
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    a {
+      color: #3498db; /* Adjust link color */
+      text-decoration: none; /* Remove underline */
+    }
+
+    a:hover {
+      text-decoration: underline; /* Add underline on hover */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sign In</h1>
+    <form action="login.php" method="post">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      
+      <button onclick="redirectToPag()" type="submit">Login</button>
+      <script>
+        function redirectToPag() {
+            window.location.href = "group.html";
+        }
+    </script>
+      <button onclick="redirectToPage()" type="button">Don't have an account? Sign Up</button>
+    </form>
+  </div>
+  <script>
+    function redirectToPage() {
+      window.location.href = "signup.html";
+    }
+  </script>
+</body>
+</html>
