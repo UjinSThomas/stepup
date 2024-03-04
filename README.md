@@ -1,1 +1,1 @@
-Stepup
+"Stepup" is a website designed to help students find the most suitable courses based on their academic performance, skills, and interests. By providing details such as marks obtained in previous classes, skills like coding, writing, or interests like sports, music, the website suggests appropriate courses that align with the student's profile. This personalized approach aims to guide students towards courses that match their strengths and preferences, helping them make informed decisions about their educational and career paths.
